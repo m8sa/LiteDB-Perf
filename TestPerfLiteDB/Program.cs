@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Diagnostics;
+﻿using LiteDB;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LiteDB;
 
 namespace TestPerfLiteDB
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            RunTest("LiteDB: default", new LiteDB_Test(5000, null, new FileOptions { Journal = true, FileMode = FileOpenMode.Shared }));
-            RunTest("LiteDB: encrypted", new LiteDB_Test(5000, "mypass", new FileOptions { Journal = true, FileMode = FileOpenMode.Shared }));
-            RunTest("LiteDB: exclusive no journal", new LiteDB_Test(5000, null, new FileOptions { Journal = false, FileMode = FileOpenMode.Exclusive }));
+            //RunTest("LiteDB: default", new LiteDB_Test(5000, null, new FileOptions { Journal = true, FileMode = FileOpenMode.Shared }));
+            //RunTest("LiteDB: encrypted", new LiteDB_Test(5000, "mypass", new FileOptions { Journal = true, FileMode = FileOpenMode.Shared }));
+            //RunTest("LiteDB: exclusive no journal", new LiteDB_Test(5000, null, new FileOptions { Journal = false, FileMode = FileOpenMode.Exclusive }));
+            RunTest("LiteDB: default", new LiteDB_Test(5000, null, new FileOptions { Journal = true }));
 
             RunTest("SQLite: default", new SQLite_Test(5000, null, true));
-            RunTest("SQLite: encrypted", new SQLite_Test(5000, "mypass", true));
-            RunTest("SQLite: no journal", new SQLite_Test(5000, null, false));
-
+            //RunTest("SQLite: encrypted", new SQLite_Test(5000, "mypass", true));
+            //RunTest("SQLite: no journal", new SQLite_Test(5000, null, false));
+            Console.WriteLine("press a key to continue");
             Console.ReadKey();
         }
 
